@@ -1,6 +1,5 @@
 var shoe = require('shoe'),
-    moment = require('moment'),
-    through = require('through');
+    moment = require('moment');
 
 var username = prompt('username');
 var messageInput = document.getElementById('message-input');
