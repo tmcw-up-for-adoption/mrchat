@@ -5,16 +5,14 @@ var express = require('express'),
     server = require('http').createServer(app).listen(3000),
     shoe = require('shoe'),
     fifo = require('stream-fifo'),
-    through = require('through'),
+    Stream = require('stream'),
     browserify = require('browserify-middleware');
 
 app.use('/js', browserify('./js'));
 app.use(express.static(__dirname + '/public'));
 
-var q = fifo(50);
-var combine = through(function write(data) {
-    this.queue(data);
-});
+var q = fifo(50),
+    combine = new Stream.PassThrough();
 
 var sock = shoe(function(stream) {
     q.stack().pipe(stream, { end: false });

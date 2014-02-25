@@ -19,7 +19,6 @@
     "express": "~3.4.8",
     "browserify-middleware": "~2.3.0",
     "shoe": "0.0.15",
-    "through": "~2.3.4",
     "moment": "~2.5.1",
     "stream-fifo": "0.0.1"
   }
