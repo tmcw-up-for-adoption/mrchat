@@ -1,0 +1,22 @@
+{
+  "name": "chattify",
+  "version": "0.0.0",
+  "description": "a local chat server and client",
+  "main": "index.js",
+  "scripts": {
+    "test": "tap test/*.js"
+  },
+  "keywords": [
+    "chat",
+    "server"
+  ],
+  "author": "Tom MacWright",
+  "license": "BSD",
+  "dependencies": {
+    "express": "~3.4.8",
+    "browserify-middleware": "~2.3.0",
+    "shoe": "0.0.15",
+    "through": "~2.3.4",
+    "moment": "~2.5.1"
+  }
+}
