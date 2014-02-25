@@ -16,7 +16,7 @@ body {
     right:0;
     bottom:40px;
     top:0;
-    overflow:scroll;
+    overflow:scroll-y;
 }
 
 #message-input {

@@ -1,9 +1,18 @@
 var shoe = require('shoe'),
+    insertCss = require('insert-css'),
+    fs = require('fs'),
     moment = require('moment');
 
+var css = fs.readFileSync(__dirname + '/style.css', 'utf8');
+insertCss(css);
+
 var username = prompt('username');
-var messageInput = document.getElementById('message-input');
-var result = document.getElementById('list');
+var result = document.body.appendChild(document.createElement('div'));
+result.id = 'list';
+
+var messageForm = document.body.appendChild(document.createElement('form'));
+var messageInput = messageForm.appendChild(document.createElement('input'));
+messageInput.id = 'message-input';
 
 var stream = shoe('/chat');
 stream.on('data', function(json) {
@@ -24,7 +33,7 @@ stream.on('data', function(json) {
     line.scrollIntoView();
 });
 
-document.getElementById('message-form').onsubmit = function() {
+messageForm.onsubmit = function() {
     stream.write(JSON.stringify({
         message: messageInput.value,
         date: +new Date(),
