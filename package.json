@@ -1,6 +1,6 @@
 {
   "name": "mrchat",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "a local chat server and client",
   "main": "index.js",
   "bin": {
