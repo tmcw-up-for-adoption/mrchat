@@ -22,6 +22,7 @@ stream.on('data', function(json) {
     var txt = line.appendChild(document.createElement('span'));
     txt.innerText = msg.message;
     result.appendChild(line);
+    line.scrollIntoView();
 });
 
 document.getElementById('message-form').onsubmit = function() {

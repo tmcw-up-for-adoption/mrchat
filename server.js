@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 var express = require('express'),
     app = express(),
     server = require('http').createServer(app).listen(3000),
@@ -13,7 +15,15 @@ var combine = through(function write(data) {
 });
 
 var sock = shoe(function(stream) {
-    stream.pipe(combine).pipe(stream);
+    stream
+        .on('data', write)
+        .on('end', function() {
+            stream.off('data', write);
+        });
+    function write(d) {
+        combine.write(d);
+        stream.write(d);
+    }
 });
 
 sock.install(server, '/chat');

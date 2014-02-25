@@ -3,6 +3,9 @@
   "version": "0.0.0",
   "description": "a local chat server and client",
   "main": "index.js",
+  "bin": {
+    "chattify": "server.js"
+  },
   "scripts": {
     "test": "tap test/*.js"
   },
