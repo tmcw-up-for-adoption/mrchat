@@ -15,15 +15,7 @@ var combine = through(function write(data) {
 });
 
 var sock = shoe(function(stream) {
-    stream
-        .on('data', write)
-        .on('end', function() {
-            stream.off('data', write);
-        });
-    function write(d) {
-        combine.write(d);
-        stream.write(d);
-    }
+    stream.pipe(combine, { end: false }).pipe(stream, { end: false });
 });
 
 sock.install(server, '/chat');

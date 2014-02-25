@@ -1,5 +1,7 @@
 # chattify
 
+![](screenshot.png)
+
 A local chat server and client in an npm module.
 
     npm install chattify -g
