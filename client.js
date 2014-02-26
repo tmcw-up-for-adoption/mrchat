@@ -1,6 +1,7 @@
 var shoe = require('shoe'),
     insertCss = require('insert-css'),
     fs = require('fs'),
+    marked = require('marked'),
     moment = require('moment');
 
 var css = fs.readFileSync(__dirname + '/style.css', 'utf8');
@@ -28,7 +29,7 @@ stream.on('data', function(json) {
     user.innerHTML = msg.username;
 
     var txt = line.appendChild(document.createElement('span'));
-    txt.innerText = msg.message;
+    txt.innerHTML = marked(msg.message).replace(/<\/?p>/g, '');
     result.appendChild(line);
     line.scrollIntoView();
 });

@@ -6,6 +6,8 @@ var server = require('http').createServer(app).listen(3000),
     brfs = require('brfs'),
     concat = require('concat-stream'),
     Stream = require('stream'),
+    through = require('through'),
+    moment = require('moment'),
     browserify = require('browserify');
 
 var q = fifo(50),
@@ -17,6 +19,12 @@ var sock = shoe(function(stream) {
         .pipe(combine, { end: false })
         .pipe(stream, { end: false })
         .pipe(q);
+
+    stream.pipe(through(function(json) {
+            var data = JSON.parse(json);
+            this.queue(moment(data.date).format() + '\t' + data.username + '\t' + data.message + '\n');
+        }))
+        .pipe(process.stdout);
 });
 
 var client = '';
