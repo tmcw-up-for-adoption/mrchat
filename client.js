@@ -34,6 +34,29 @@ stream.on('data', function(json) {
     line.scrollIntoView();
 });
 
+function notify() {
+    // 0 is PERMISSION_ALLOWED
+    var notification = window.webkitNotifications.createNotification(
+        'http://i.stack.imgur.com/dmHl0.png',
+        'Chrome notification!',
+        'Here is the notification text'
+    );
+    notification.onclick = function () {
+        notification.close();
+    }
+    notification.show();
+}
+
+if (window.webkitNotifications.checkPermission() !== 0) {
+    var permissionButton = document.body.appendChild(document.createElement('button'));
+    permissionButton.innerHTML = 'get notifications';
+    permissionButton.id = 'permission-button';
+    permissionButton.onclick = function() {
+        window.webkitNotifications.requestPermission();
+        permissionButton.parentNode.removeChild(permissionButton);
+    };
+}
+
 messageForm.onsubmit = function() {
     stream.write(JSON.stringify({
         message: messageInput.value,

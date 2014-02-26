@@ -58,3 +58,12 @@ a {
 .me {
     font-weight:bold;
 }
+
+#permission-button {
+    position:absolute;
+    top:5px;
+    right:5px;
+    color:#eee;
+    background:#000;
+    border:0;
+}
